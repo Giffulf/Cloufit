@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: weather_api
+    image: weather_api
+    build: .
+    env_file:
+      - .env
+
+# need create network with "docker network create weather_rec" command
+networks:
+  weather_rec:
+    external: true
