@@ -7,6 +7,8 @@ services:
     build: .
     env_file:
       - .env
+    networks:
+      - weather_rec
 
 # need create network with "docker network create weather_rec" command
 networks:
