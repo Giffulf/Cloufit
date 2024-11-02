@@ -18,13 +18,13 @@ class WeatherService:
         if not geo_lat_lon:
             return {"error": "Город не найден"}
 
-        res = requests.get(self.weather_map_url.format(lat=geo_lat_lon[0]['latitude'], lon=geo_lat_lon[0]['longitude'], api_key=self.api_key))
+        res = requests.get(self.weather_map_url.format(lat=geo_lat_lon[0]['latitude'], lon=geo_lat_lon[0]['longitude'], api_key=self.api_key), timeout=6)
 
         if res.status_code == 200:
             logger.info(f"Successfully fetched weather for {city_name}")
 
             return res.json()
 
-        logger.warning(f"Failed to fetch weather for {city_name}")
+        logger.warning(f"Failed to fetch weather for {city_name}. Weather status code {res.status_code}. Message: {res.json()}")
 
         return {"error": "Ошибка погодного сервера"}
