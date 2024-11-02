@@ -21,5 +21,5 @@ class Geocoder:
             logger.info(f"Successfully geocoded {city}")
             return res.json()
 
-        logger.warning(f"Failed to geocode {city}")
+        logger.warning(f"Failed to geocode {city}. Geocoding status code {res.status_code}. Message: {res.json()}")
         return {}
